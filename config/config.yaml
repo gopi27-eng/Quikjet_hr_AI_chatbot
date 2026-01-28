@@ -1,0 +1,13 @@
+model_config:
+  model_name: "gemini-2.0-flash"
+  temperature: 0.0  # Lower for higher policy accuracy
+  max_output_tokens: 1024
+
+retrieval_config:
+  index_name: "quikjet-hr-index"
+  top_k: 10
+  embedding_model: "sentence-transformers/all-MiniLM-l6-v2"
+
+ui_settings:
+  page_title: "Quikjet HR Assistant"
+  app_header: "Quikjet HR Policy AI"

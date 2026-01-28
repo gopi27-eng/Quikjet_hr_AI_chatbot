@@ -1,0 +1,5 @@
+myvenv
+.env
+quikjet_hr_policies
+Quikjet_HR_Test_Results.csv
+.dockerignore
