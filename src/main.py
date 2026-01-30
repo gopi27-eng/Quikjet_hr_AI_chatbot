@@ -16,7 +16,7 @@ def load_config():
     except FileNotFoundError:
         # Fallback defaults if config is missing
         return {
-            "ui_settings": {"app_header": "✈️ Quikjet HR Policy AI", "page_title": "Quikjet AI"},
+            "ui_settings": {"app_header": " Quikjet HR Policy AI", "page_title": "Quikjet AI"},
             "retrieval_config": {"index_name": "quikjet-hr-index"}
         }
 
@@ -30,7 +30,6 @@ st.set_page_config(
 )
 
 # --- 3. CUSTOM CSS (QUIKJET BRANDING) ---
-# Forced high-contrast theme: Dark Blue (#003366) and White Bubbles
 st.markdown("""
     <style>
     /* Main Background */
@@ -74,27 +73,21 @@ st.markdown("""
 
 # --- 4. SIDEBAR & CAREER PROFILE ---
 with st.sidebar:
-    # Ensure OIP.jpg is in your root folder or adjust the path
-    if os.path.exists("quikjet.jpg"):
+    
+    if os.path.exists(r'C:\Users\Gopi\Desktop\AI Chatbot\Quikjet_hr_policies\quikjet.jpg'):
         st.image(r'C:\Users\Gopi\Desktop\AI Chatbot\Quikjet_hr_policies\quikjet.jpg', use_container_width=True)
     else:
-        st.title("QUIKJET")
+        st.title("**QUIKJET** **Airlines**")
         
     st.markdown("---")
     st.subheader("Developer Profile")
     st.info(f"""
     **Name:** Gopi Borra
-    **Background:** 5 Years Aviation Security
-    **Current:** Data Scientist Intern
-    **Goal:** Transitioning Aviation to Tech [cite: 2025-07-02]
     """)
     
-    st.markdown("---")
-    st.subheader("Model Stats")
-    st.write(f"Index: `{config['retrieval_config']['index_name']}`")
-    st.write("Accuracy: `66.7%` (Base)")
     
-    if st.button("🗑️ Clear Chat History"):
+    
+    if st.button("Clear Chat History"):
         st.session_state.messages = []
         st.rerun()
 

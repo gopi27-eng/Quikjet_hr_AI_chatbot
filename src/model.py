@@ -45,7 +45,7 @@ def get_rag_chain():
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash", 
         google_api_key=os.getenv("GOOGLE_API_KEY"),
-        temperature=0.3 # Low temperature for factual HR accuracy
+        temperature=0.0# Low temperature for factual HR accuracy
     )
     
     # 5. Define the Expert HR System Prompt
