@@ -5,7 +5,7 @@ services:
     plan: free
     region: singapore
     # Use the build script to handle any system-level dependencies
-    buildCommand: ./build.sh
+    buildCommand: pip install -r requirements.txt
     # Streamlit requires a specific port mapping on Render
     startCommand: streamlit run src/main.py --server.port $PORT --server.address 0.0.0.0
     envVars:
