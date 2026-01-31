@@ -10,7 +10,7 @@ services:
     startCommand: streamlit run src/main.py --server.port $PORT --server.address 0.0.0.0
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10.0
+        value: 3.13.5
       - key: GOOGLE_API_KEY
         sync: false # Set this in the Render Dashboard
       - key: PINECONE_API_KEY
