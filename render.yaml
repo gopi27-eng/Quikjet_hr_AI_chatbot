@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: quikjet-hr-ai
+    env: python
+    plan: free
+    region: singapore
+    # Use the build script to handle any system-level dependencies
+    buildCommand: ./build.sh
+    # Streamlit requires a specific port mapping on Render
+    startCommand: streamlit run src/main.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: GOOGLE_API_KEY
+        sync: false # Set this in the Render Dashboard
+      - key: PINECONE_API_KEY
+        sync: false # Set this in the Render Dashboard
+      - key: PINECONE_ENVIRONMENT
+        sync: false
