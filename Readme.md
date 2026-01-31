@@ -1,10 +1,6 @@
-A professional **README.md** is the "landing page" for your project. For someone transitioning from aviation security into Data Science, it is your chance to show recruiters how you applied advanced technology to solve a real-world problem you understood from your 5 years at **Quikjet Cargo Airlines**.
-
-Here is a high-quality README structure tailored for your GitHub repository:
-
----
-
 # ✈️ Quikjet HR Policy AI: End-to-End RAG System
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/gopi27-eng/Quikjet_hr_AI_chatbot)
 
 ### **Project Overview**
 
