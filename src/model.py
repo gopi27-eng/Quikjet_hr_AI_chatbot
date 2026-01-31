@@ -2,7 +2,7 @@ import os
 import yaml
 from dotenv import load_dotenv
 
-load_dotenv(r'C:\Users\Gopi\Desktop\AI Chatbot\src\.env')
+load_dotenv(r'C:\Users\Gopi\Desktop\AI Chatbot\.env')
 
 
 
@@ -17,6 +17,33 @@ from pathlib import Path
 import yaml
 from pathlib import Path
 
+def get_rag_chain():
+    # 1. Use Embedding Model from YAML
+    embeddings = HuggingFaceEmbeddings(
+        model_name=config['retrieval_config']['embedding_model']
+    )
+    
+    # 2. Use Index Name from YAML
+    vectorstore = PineconeVectorStore(
+        index_name=config['retrieval_config']['index_name'], 
+        embedding=embeddings,
+        pinecone_api_key=os.getenv("PINECONE_API_KEY")
+    )
+    
+    # 3. Use top_k from YAML
+    retriever = vectorstore.as_retriever(
+        search_kwargs={"k": config['retrieval_config']['top_k']}
+    )
+    
+    # 4. Use Model Settings from YAML
+    llm = ChatGoogleGenerativeAI(
+        model=config['model_config']['model_name'], 
+        temperature=config['model_config']['temperature'],
+        max_tokens=config['model_config']['max_output_tokens'],
+        google_api_key=os.getenv("GOOGLE_API_KEY")
+    )
+    
+    
 def load_config():
     base_path = Path(__file__).resolve().parent.parent
     config_path = base_path / "config" / "config.yaml"
@@ -50,14 +77,12 @@ def get_rag_chain():
     
     # 5. Define the Expert HR System Prompt
     system_prompt = (
-        "You are an expert HR Assistant for Quikjet Airlines. "
-        "Use the provided context (which includes [Source: Page X] markers) "
-        "to answer the user's question accurately. "
-        "If the answer is found in a table or annexure, describe it clearly. "
-        "If the context does not contain the answer, state that you don't know "
-        "based on the provided pages. Keep the tone professional.\n\n"
-        "Context: {context}"
-    )
+    "You are a concise HR Assistant for Quikjet Airlines. "
+    "Give short, direct answers (max 2-3 sentences). "
+    "Use bullet points for lists. Do not repeat the question. "
+    "Always cite [Source: Page X].\n\n"
+    "Context: {context}"
+)
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", system_prompt),

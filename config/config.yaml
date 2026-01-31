@@ -1,5 +1,5 @@
 model_config:
-  model_name: "gemini-2.0-flash"
+  model_name: "gemini-2.5-flash"
   temperature: 0.0  # Lower for higher policy accuracy
   max_output_tokens: 1024
 
